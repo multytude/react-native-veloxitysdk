@@ -1,0 +1,56 @@
+import groovy.json.JsonSlurper
+
+
+def computeVersionName() {
+    // dynamically retrieve version from package.json
+    def slurper = new JsonSlurper()
+    def json = slurper.parse(file('../package.json'), "utf-8")
+    return json.version
+}
+
+apply plugin: 'com.android.library'
+
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.2'
+        classpath 'com.google.gms:google-services:4.3.10'  // Google Services plugin
+    }
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "26.0.2"
+
+    defaultConfig {
+        manifestPlaceholders = [permissionId: "veloxity"]
+        minSdkVersion 19
+        targetSdkVersion 30
+        versionCode 1
+        // get version name from package.json version
+        versionName computeVersionName()
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+repositories {
+    mavenCentral()
+    google()
+}
+
+allprojects {
+    repositories {
+        google()
+    }
+}
+
+dependencies {
+    implementation 'com.facebook.react:react-native:0.20.1'
+    implementation 'net.veloxity.sdk:veloxitysdk:3.14.5'
+}

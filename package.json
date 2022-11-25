@@ -1,0 +1,52 @@
+{
+  "name": "react-native-veloxitysdk",
+  "version": "3.5.6",
+  "author": "veloxity",
+  "license": "Veloxity Properietary License",
+  "main": "index.js",
+  "description": "Veloxity SDK For ReactNative",
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/veloxity-inc/react-native-veloxitysdk.git"
+  },
+  "bugs": {
+    "url": "https://bitbucket.org/veloxity-inc/react-native-veloxitysdk/issues",
+    "email": "developer@veloxity.net"
+  },
+  "files": [
+    "src",
+    "lib",
+    "android",
+    "ios",
+    "cpp",
+    "react-native-veloxitysdk.podspec",
+    "!lib/typescript/example",
+    "!android/build",
+    "!ios/build",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__"
+  ],
+  "homepage": "https://bitbucket.org/veloxity-inc/react-native-veloxitysdk#readme",
+  "keywords": [
+    "react-native",
+    "blinnk",
+    "veloxity",
+    "veloxitysdk",
+    "android",
+    "ios",
+    "push-notification"
+  ],
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "peerDependencies": {
+    "react": "^16.8.1",
+    "react-native": ">=0.60.0-rc.0 <1.0.x"
+  },
+  "devDependencies": {
+    "react": "^16.9.0",
+    "react-native": "^0.61.5"
+  }
+}
