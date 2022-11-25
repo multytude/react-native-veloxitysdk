@@ -27,7 +27,7 @@ public class VeloxityPackage implements ReactPackage {
       return modules;
    }
 
-   @Override
+   // @Override
    public List<Class<? extends JavaScriptModule>> createJSModules() {
       return null;
    }
