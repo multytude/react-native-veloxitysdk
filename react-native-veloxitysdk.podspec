@@ -15,5 +15,5 @@ Pod::Spec.new do |s|
   
   s.dependency "React"
   s.dependency "React-Core"
-  s.dependency "VeloxitySDK", "~> 3.9.3"
+  s.dependency "VeloxitySDK", "~> 3.9.13"
 end

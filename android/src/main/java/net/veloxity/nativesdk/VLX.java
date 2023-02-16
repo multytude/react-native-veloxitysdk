@@ -61,14 +61,15 @@ public class VLX extends ReactContextBaseJavaModule {
     public static void setWebServiceUrl(String webServiceEndpoint) {
         VLX.webServiceEndpoint = webServiceEndpoint;
     }
-    
+
     @ReactMethod
     public static void setAskPermission(boolean askPermission) {
         VLX.askPermission = askPermission;
     }
 
     @ReactMethod
-    public static void setAuthorizationMenu(String dialogTitle, String dialogMessage, String dialogPositive, String dialogNegative) {
+    public static void setAuthorizationMenu(String dialogTitle, String dialogMessage, String dialogPositive,
+            String dialogNegative) {
         VLX.dialogTitle = dialogTitle;
         VLX.dialogMessage = dialogMessage;
         VLX.dialogPositive = dialogPositive;
@@ -76,14 +77,16 @@ public class VLX extends ReactContextBaseJavaModule {
     }
 
     private void sendEvent(String eventName, @Nullable WritableMap params) {
-        getReactApplicationContext().getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit(eventName, params);
+        getReactApplicationContext().getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit(eventName,
+                params);
     }
 
     @ReactMethod
     public void start() {
         try {
             if (dialogTitle != null || dialogMessage != null || dialogPositive != null || dialogNegative != null) {
-                VeloxityOptions veloxityOptions = new VeloxityOptions.Builder(getReactApplicationContext()).setPriority(priority)
+                VeloxityOptions veloxityOptions = new VeloxityOptions.Builder(getReactApplicationContext())
+                        .setPriority(priority)
                         .setLicenseKey(licenseKey)
                         .setWebServiceEndpoint(webServiceEndpoint)
                         .setDialogTitle(dialogTitle)
@@ -109,13 +112,16 @@ public class VLX extends ReactContextBaseJavaModule {
                                         null);
                             }
                         })
+                        .setNumberOfDelays(0)
                         .build();
                 Veloxity.initialize(veloxityOptions);
             } else {
-                VeloxityOptions veloxityOptions = new VeloxityOptions.Builder(getReactApplicationContext()).setPriority(priority)
+                VeloxityOptions veloxityOptions = new VeloxityOptions.Builder(getReactApplicationContext())
+                        .setPriority(priority)
                         .setLicenseKey(licenseKey)
                         .setWebServiceEndpoint(webServiceEndpoint)
                         .setNeverAskedPermission(!askPermission)
+                        .setNumberOfDelays(0)
                         .build();
                 Veloxity.initialize(veloxityOptions);
             }
@@ -140,7 +146,8 @@ public class VLX extends ReactContextBaseJavaModule {
     public void optIn() {
         try {
             if (dialogTitle != null || dialogMessage != null || dialogPositive != null || dialogNegative != null) {
-                VeloxityOptions veloxityOptions = new VeloxityOptions.Builder(getReactApplicationContext()).setPriority(priority)
+                VeloxityOptions veloxityOptions = new VeloxityOptions.Builder(getReactApplicationContext())
+                        .setPriority(priority)
                         .setLicenseKey(licenseKey)
                         .setWebServiceEndpoint(webServiceEndpoint)
                         .setDialogTitle(dialogTitle)
@@ -166,13 +173,16 @@ public class VLX extends ReactContextBaseJavaModule {
                                         null);
                             }
                         })
+                        .setNumberOfDelays(0)
                         .build();
                 Veloxity.optIn(veloxityOptions);
             } else {
-                VeloxityOptions veloxityOptions = new VeloxityOptions.Builder(getReactApplicationContext()).setPriority(priority)
+                VeloxityOptions veloxityOptions = new VeloxityOptions.Builder(getReactApplicationContext())
+                        .setPriority(priority)
                         .setLicenseKey(licenseKey)
                         .setWebServiceEndpoint(webServiceEndpoint)
                         .setNeverAskedPermission(!askPermission)
+                        .setNumberOfDelays(0)
                         .build();
                 Veloxity.optIn(veloxityOptions);
             }
@@ -200,7 +210,7 @@ public class VLX extends ReactContextBaseJavaModule {
     public void isServiceRunning(Callback callback) {
         callback.invoke(Veloxity.isServiceRunning(getReactApplicationContext()));
     }
-    
+
     @ReactMethod
     public static void registerLifeCycleCallbacks(Application application) {
         Veloxity.registerLifeCycleCallbacks(application);
@@ -298,6 +308,5 @@ public class VLX extends ReactContextBaseJavaModule {
 
         return jsonArray;
     }
-
 
 }
